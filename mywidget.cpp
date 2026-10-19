@@ -60,8 +60,9 @@ void MyWidget::on_exportButton_clicked()
             saveStr+=ui->book->item(i,j)->text()+",";
         }
         saveStr+="\n";
-        CbWrite(fileName,saveStr);
+
     }
+    CbWrite(fileName,saveStr);
 }
 
 
