@@ -65,4 +65,39 @@ void MyWidget::on_exportButton_clicked()
     CbWrite(fileName,saveStr);
 }
 
+void MyWidget::on_importButton_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "匯出通訊錄",".","csv(*.csv);;text(*.txt)");
+
+    if(fileName.isEmpty()){
+        return;
+    }
+
+    QFile inFile(fileName);
+    if(!inFile.open(QFile::ReadOnly | QFile::Text)){
+        qDebug() << "錯誤";
+        return;
+    }
+
+    QTextStream in(&inFile);
+    in.setEncoding(QStringConverter::System);
+
+    ui->book->setRowCount(0);
+
+    while(!in.atEnd()){
+        QString line = in.readLine();
+        if(line.isEmpty()) continue;
+        QStringList fields = line.split(",");
+        if(fields.size() >= 4){
+            int currentRow = ui->book->rowCount();
+            ui->book->insertRow(currentRow);
+            for(int col = 0; col < 4; col++){
+                QTableWidgetItem *newItem = new QTableWidgetItem(fields[col]);
+                ui->book->setItem(currentRow, col, newItem);
+            }
+        }
+    }
+    inFile.close();
+}
+
 

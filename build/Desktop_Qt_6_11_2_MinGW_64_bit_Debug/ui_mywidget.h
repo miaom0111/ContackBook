@@ -48,6 +48,7 @@ public:
     QSpacerItem *horizontalSpacer;
     QPushButton *insertButton;
     QPushButton *exportButton;
+    QPushButton *importButton;
     QSpacerItem *horizontalSpacer_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -129,6 +130,11 @@ public:
 
         horizontalLayout->addWidget(exportButton);
 
+        importButton = new QPushButton(centralwidget);
+        importButton->setObjectName("importButton");
+
+        horizontalLayout->addWidget(importButton);
+
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
@@ -162,6 +168,7 @@ public:
         label_4->setText(QCoreApplication::translate("MyWidget", "\351\233\273\350\251\261:", nullptr));
         insertButton->setText(QCoreApplication::translate("MyWidget", "\346\226\260\345\242\236", nullptr));
         exportButton->setText(QCoreApplication::translate("MyWidget", "\345\214\257\345\207\272", nullptr));
+        importButton->setText(QCoreApplication::translate("MyWidget", "\345\214\257\345\205\245", nullptr));
     } // retranslateUi
 
 };
